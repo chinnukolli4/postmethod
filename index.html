@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-image:url(https://img.freepik.com/free-photo/vivid-blurred-colorful-wallpaper-background_58702-3798.jpg?w=2000);
+			background-size: cover;
+			background-repeat: no-repeat;
+			}
+			.mouni{
+				text-align: center;
+				margin-top: 8px;
+			}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function chinu(){
+			var username=document.getElementById("username").value
+			console.log(username)
+			var password=document.getElementById("password").value
+			console.log(password)
+			fetch("http://localhost:2003/newData",{
+				method:"POST",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				body:JSON.stringify({name:username,password:password})
+			})
+			.then((res)=>{
+				console.log(res)
+				if(res.status===200)
+					alert("Registration sucessful")
+			})
+			.catch((err)=>{
+				.alert(err)
+			})
+	}
+	</script>
+	<div class="mouni">
+	<p><input class="user" id="username" placeholder="enter the name"/></p>
+	<p><input class="pass" id="password" placeholder="enter the password"></p>
+	<button onclick="chinu()">submit</button>
+	</div>
+</body>
+</html>
