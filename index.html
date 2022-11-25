@@ -14,6 +14,17 @@
 				text-align: center;
 				margin-top: 8px;
 			}
+			#car{
+				background-color: blue;
+				color: white;
+			}
+			.btn{
+				font-size: 20px;
+			}
+			.btn:hover{
+				background-color: pink;
+				color: white;
+			}
 	</style>
 </head>
 <body>
@@ -23,12 +34,21 @@
 			console.log(username)
 			var password=document.getElementById("password").value
 			console.log(password)
-			fetch("http://localhost:2003/newData",{
+			var car=document.getElementById("car").value
+			console.log(car)
+			var gmale=document.getElementById("male").checked
+			var gfemale=document.getElementById("female").checked
+			if(gmale==true)
+				var gender=("male")
+			else
+				var gender=("female")
+			console.log(gender)
+				fetch("http://localhost:2003/newData",{
 				method:"POST",
 				headers:{
 					"Content-Type":"application/json"
 				},
-				body:JSON.stringify({name:username,password:password})
+				body:JSON.stringify({name:username,password:password,select:car,gender:gender})
 			})
 			.then((res)=>{
 				console.log(res)
@@ -41,9 +61,18 @@
 	}
 	</script>
 	<div class="mouni">
-	<p><input class="user" id="username" placeholder="enter the name"/></p>
-	<p><input class="pass" id="password" placeholder="enter the password"></p>
-	<button onclick="chinu()">submit</button>
+		<h1>Registration form</h1>
+		<p><input class="user" id="username" placeholder="enter the name"/></p>
+		<p><input class="pass" id="password" placeholder="enter the password"></p>
+		<select id="car">
+		<option value="select cars">select a cars models</option>
+			<option value="jaguar">jaguar</option>
+			<option value="rollsroyce">rollsroyce</option>
+			<option value="verna">verna</option>	
+	</select>
+		<p><input type="radio" name="gender" id="male">male</p>
+		<p><input type="radio" name="gender" id="female">female</p>
+	<p><button class="btn" onclick="chinu()">submit</button></p>
 	</div>
 </body>
 </html>
